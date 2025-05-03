@@ -8,12 +8,12 @@ This python module makes it easy to create text-based, graphical interfaces for 
 #### Window
 #### Advanced window
 #### Label
-Label(text: str, posx: int, posy: int, windowx: int, windowy: int)
-    text: Text for the label
-    posx: The x position of the label
-    posy: The y position of the label
-    windowx: The x size of the window
-    windowy: The y size of the window
+Label(text: str, posx: int, posy: int, windowx: int, windowy: int)  
+    text: Text for the label  
+    posx: The x position of the label  
+    posy: The y position of the label  
+    windowx: The x size of the window  
+    windowy: The y size of the window  
 #### Button
 #### Textbox
 #### Listbox
