@@ -1,5 +1,8 @@
-from pynput.keyboard import Key
+from pynput.keyboard import Key, Listener
 import os
+import threading
+
+current_textbox = 0
 
 class Window:
     def __init__(self, title: str, sizex: int, sizey: int, boxes: int):
@@ -364,9 +367,9 @@ class Table:
 clear = lambda: os.system('cls')
 
 def on_release(key, objects, current_textbox):
-    if key == key == Key.down:
+    if key == Key.page_down:
         current_textbox += 1
-    elif key == key == Key.up:
+    elif key == Key.page_up:
         current_textbox -= 1
 
     for obj in objects:
@@ -420,7 +423,26 @@ def manage_layers(layers: list[str]) -> str:
 
 def draw(objects):
     clear()
+    print("\033[H", end='')
     layers = []
     for obj in objects:
         layers.append(obj.draw())
     print(manage_layers(layers))
+
+def onrelease(key, objects):
+    global current_textbox
+    current_textbox = on_release(key, objects, current_textbox)
+    if key == Key.esc:
+        return False
+    
+def start_listener(objects):
+    """Billentyűzet események figyelése"""
+    with Listener(on_release=lambda key: onrelease(key, objects)) as listener:
+        listener.join()
+
+def run(objects):
+    """Ez a fő függvény, ami elindítja a programot"""
+    global current_textbox
+    draw(objects)  # Kép kirajzolása
+    listener_thread = threading.Thread(target=start_listener, args=(objects,))  # Listener elindítása külön szálon
+    listener_thread.start()
