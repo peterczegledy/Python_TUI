@@ -11,6 +11,7 @@ Label(text: str, posx: int, posy: int)
     text: Text for the label  
     posx: The x position of the label  
     posy: The y position of the label  
+    
 ### Button
 ### Textbox
 ### Listbox
