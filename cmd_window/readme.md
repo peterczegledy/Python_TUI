@@ -136,8 +136,37 @@ posy: The y position of the checkbox.
 ```
 ### Table 
 A grid-like structure that displays data in rows and columns. Each cell can contain text or other elements, and values can be retrieved or modified. 
+```python
+Table(id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:int, posx:int, posy:int, windowx:int, windowy:int)
+```
+
+```
+-id: The id of the table.
+-data: A 2D array that contains the data of the table.
+-columnheaders: A list containing the headers of the columns.
+-columnwidths: A list containing the widths of the columns.
+-visiblerow: The maximum number of visible rows.
+-posx: The x position of the table.
+-posy: The y position of the table.
+-windowx: !!WILL BE REMOVED!!
+-windowy: !!WILL BE REMOVED!!
+```
 ### Slider
 An input element that allows the user to select a value from a range by sliding a handle. The value can be adjusted using the left and right arrow keys, and it can be retrieved and modified programmatically.
+
+```python
+Slider(id:int, width:int, minvalue:int, maxvalue:int, step:int, posx:int, posy:int)
+```
+
+```
+-id: The id of the slider
+-width: The width of the slider that will be drawn.
+-minvalue: The minimum value of the slider.
+-maxvalue: The maximum value of the slider.
+-step: The amount by which the value will increase or decrease.
+-posx: The x position of the slider.
+-posy: The y position of the slider.
+```
 ## Installation
 
 The module can be downloaded from the github page.
