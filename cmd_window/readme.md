@@ -44,10 +44,10 @@ Window(title: str, sizex: int, sizey: int, boxes: int)
 ```
 
 ```
-title: The title of the window
-sizex: The x size of the window
-sizey: Thy y size of the window
-boxes: The number of vertical boxes the window will be divided into.
+-title: The title of the window
+-sizex: The x size of the window
+-sizey: Thy y size of the window
+-boxes: The number of vertical boxes the -window will be divided into.
 ```
 
 ### Advanced window
@@ -58,11 +58,11 @@ AdvancedWindow(titles:list, sizesx:list[int], sizesy:list[int], boxesx:int, boxe
 ```
 
 ```
-titles: An array —possibly 2D— that contains all the titles.
-sizesx: An array that contains the width of each column.
-sizesy: An array that contains the height of each row.
-boxesx: The number of columns.
-boxesy: The number of rows.
+-titles: An array —possibly 2D— that contains all the titles.
+-sizesx: An array that contains the width of each column.
+-sizesy: An array that contains the height of each row.
+-boxesx: The number of columns.
+-boxesy: The number of rows.
 ```
 
 ### Label
@@ -72,9 +72,9 @@ A simple text element used to display static information. It cannot be interacte
 Label(text: str, posx: int, posy: int)  
 ```
 ```
-text: Text of the label  
-posx: The x position of the label  
-posy: The y position of the label  
+-text: Text of the label  
+-posx: The x position of the label  
+-posy: The y position of the label  
 ```
 ### Button
 A clickable element that displays custom text and can be activated using the SPACE key.
@@ -84,11 +84,11 @@ Button(id:int, text:str, command, posx:int, posy:int)
 ```
 
 ```
-id: The id of the button.
-text: The text of the button.
-command: The function that should be called when pressed
-posx: The x position of the button.
-posy: The y position of the button.
+-id: The id of the button.
+-text: The text of the button.
+-command: The function that should be called when pressed
+-posx: The x position of the button.
+-posy: The y position of the button.
 ```
 ### Textbox
 An input field that allows the user to enter text. It can also be a password field, where the entered characters are hidden. The value can be retrieved and used within the program.
@@ -97,11 +97,11 @@ Textbox(id:int, width:int, posx:int, posy:int, ispassword:bool)
 ```
 
 ```
-id: The id of the textbox.
-width: The width of the textbox.
-posx: The x position of the textbox.
-posy: The y position of the textbox.
-ispassword: If set to True, the textbox will display "*" characters instead of the entered text, but the value can still be accessed using the .text attribute of the textbox.
+-id: The id of the textbox.
+-width: The width of the textbox.
+-posx: The x position of the textbox.
+-posy: The y position of the textbox.
+-ispassword: If set to True, the textbox will display "*" characters instead of the entered text, but the value can still be accessed using the .text attribute of the textbox.
 ```
 
 ### Multilinetextbox
@@ -116,10 +116,10 @@ Listbox(id:int, data:list, posx:int, posy:int)
 ```
 
 ```
-id: The id of the listbox.
-data: A list that contains all the options of the listbox.
-posx: The x position of the listbox.
-posy: The y position of the listbox.
+-id: The id of the listbox.
+-data: A list that contains all the options of the listbox.
+-posx: The x position of the listbox.
+-posy: The y position of the listbox.
 ```
 ### Chechbox
 A toggleable element that allows the user to select or deselect an option. It has a value of True when checked and False when unchecked.
@@ -129,10 +129,10 @@ Checkbox(id:int, text:str, posx:int, posy:int)
 ```
 
 ```
-id: The id of the checkbox.
-text: The text of the checkbox.
-posx: The x position of the checkbox.
-posy: The y position of the checkbox.
+-id: The id of the checkbox.
+-text: The text of the checkbox.
+-posx: The x position of the checkbox.
+-posy: The y position of the checkbox.
 ```
 ### Table 
 A grid-like structure that displays data in rows and columns. Each cell can contain text or other elements, and values can be retrieved or modified. 
