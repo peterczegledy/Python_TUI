@@ -398,13 +398,11 @@ def onrelease(key, objects):
         return False
     
 def start_listener(objects):
-    """Billentyűzet események figyelése"""
     with Listener(on_release=lambda key: onrelease(key, objects)) as listener:
         listener.join()
 
 def run(objects):
-    """Ez a fő függvény, ami elindítja a programot"""
     global current_textbox
-    draw(objects)  # Kép kirajzolása
-    listener_thread = threading.Thread(target=start_listener, args=(objects,))  # Listener elindítása külön szálon
+    draw(objects)
+    listener_thread = threading.Thread(target=start_listener, args=(objects,))
     listener_thread.start()
