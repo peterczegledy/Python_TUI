@@ -22,4 +22,4 @@ Label(text: str, posx: int, posy: int)
 ## Installation
 
 The module can be downloaded from the github page.
-
+pip install cmd-window
