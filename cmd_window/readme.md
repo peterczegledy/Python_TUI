@@ -3,22 +3,22 @@
 
 This python module makes it easy to create text-based, graphical interfaces for any use. The module includes text boxes, labels, buttons, list boxes, tables, password fields, check boxes, progress bars, and two types of windows.
 
-### All Modules
-
-#### Window
-#### Advanced window
-#### Label
+## All Modules
+### Window
+### Advanced window
+### Label
 Label(text: str, posx: int, posy: int, windowx: int, windowy: int)  
     text: Text for the label  
     posx: The x position of the label  
     posy: The y position of the label  
     windowx: The x size of the window  
     windowy: The y size of the window  
-#### Button
-#### Textbox
-#### Listbox
-#### Chechbox
-#### Table
+### Button
+### Textbox
+### Listbox
+### Chechbox
+### Table  
+### Slider
 
 ## Installation
 
