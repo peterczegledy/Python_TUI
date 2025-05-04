@@ -64,8 +64,7 @@ class AdvancedWindow:
         for i in range(self.boxesx-1):
             output +=(("─"*self.sizesx[i])+"┴")
         output+="─"*(self.sizesx[x])+"┘\n"
-                    
-            
+
         return output
     
 class Label:
@@ -315,14 +314,12 @@ class Table:
                 output+="┼"+"─"*(self.columnwidths[i])
         
         output+="┤\n"
-        
         for i in range(len(data)):
             output+=("¤" * (self.posx - 1))
             for x in range(len(self.columnheaders)):
                 if x != len(self.columnheaders)-1:
                     output+="│"+data[i][x]+"¤"*(self.columnwidths[x]-len(data[i][x]))
                 else:
-
                     output+="│"+data[i][x]+"¤"*(self.columnwidths[x]-len(data[i][x]))+"│\n"
         return output
 
