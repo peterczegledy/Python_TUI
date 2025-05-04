@@ -69,29 +69,23 @@ class AdvancedWindow:
         return output
     
 class Label:
-    def __init__(self, text: str, posx: int, posy: int, windowx: int, windowy: int):
+    def __init__(self, text: str, posx: int, posy: int):
         self.text = text
-        self.windowx = windowx
-        self.windowy = windowy
         self.posx = posx
         self.posy = posy
 
     def draw(self):
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-        output += ("¤" * (self.posx - 1)) + self.text + ("¤" * (self.windowx - self.posx - len(self.text) + 1)) + "\n"
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (len(self.text)+self.posx-1)) + "\n"
+        output += ("¤" * (self.posx - 1)) + self.text+ "\n"
         return output
 
 class Textbox:
-    def __init__(self, id: int, width: int, posx: int, posy: int, windowx: int, windowy: int, ispassword:bool):
+    def __init__(self, id: int, width: int, posx: int, posy: int, ispassword:bool):
         self.id = id
         self.width = width
         self.text = ""
-        self.windowx = windowx
-        self.windowy = windowy
         self.posx = posx
         self.posy = posy
         self.active = False
@@ -107,32 +101,23 @@ class Textbox:
             self.text = self.text[:-1]
 
     def draw(self):
-        if self.ispassword:
-            text = (len(self.text)*"*") + "_" * (self.width - len(self.text))
-        else:
-            text = self.text + "_" * (self.width - len(self.text))
-
         output = ""
+        if self.ispassword:text = (len(self.text)*"*") + "_" * (self.width - len(self.text))   
+        else:text = self.text + "_" * (self.width - len(self.text))
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-
+            output += ("¤" * (len(text)+self.posx-1)) + "\n"
         if self.active:
-            output += ("¤" * (self.posx - 1)) + text + "*" + ("¤" * (self.windowx - self.posx - len(self.text))) + "\n"
+            output += ("¤" * (self.posx - 1))+text+"*"+"\n"
         else:
-            output += ("¤" * (self.posx - 1)) + text + ("¤" * (self.windowx - self.posx - len(self.text) + 1)) + "\n"
-
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (self.posx - 1))+text+"\n"
         return output
 
 class MultilineTextbox:
-    def __init__(self, id: int, width: int, height:int, posx: int, posy: int, windowx: int, windowy: int):
+    def __init__(self, id: int, width: int, height:int, posx: int, posy: int):
         self.id = id
         self.width = width
         self.height = height
         self.text = ""
-        self.windowx = windowx
-        self.windowy = windowy
         self.posx = posx
         self.posy = posy
         self.active = False
@@ -144,14 +129,12 @@ class MultilineTextbox:
         pass
     
 class Button:
-    def __init__(self,id, text, command, posx, posy, windowx, windowy):
+    def __init__(self,id, text, command, posx, posy):
         self.id = id
         self.text = text
         self.command = command
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
         self.active = False
 
     def press(self):
@@ -161,23 +144,19 @@ class Button:
     def draw(self):
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (len(self.text)+self.posx-1)) + "\n"
         if self.active:
-            output += ("¤" * (self.posx - 2))+"*"+self.text+"*"+("¤" * (self.windowx - self.posx - len(self.text) + 2)) + "\n"
+            output += ("¤" * (self.posx - 2))+"*"+self.text+"*"+"\n"
         else:
-            output += ("¤" * (self.posx - 1)) +self.text+("¤" * (self.windowx - self.posx - len(self.text) + 1)) + "\n"
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (self.posx - 1)) +self.text+"\n"
         return output
 
 class Checkbox:
-    def __init__(self,id, text, posx, posy, windowx, windowy):
+    def __init__(self,id:int, text:str, posx:int, posy:int):
         self.id = id
         self.text = text
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
         self.value = False
         self.active = False
         self.val = " "
@@ -190,19 +169,15 @@ class Checkbox:
         else:text = "[ ] "+self.text
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-
+            output += ("¤" * (len(text)+self.posx-1)) + "\n"
         if self.active:
-            output += ("¤" * (self.posx - 1)) + text + "*" + ("¤" * (self.windowx - self.posx - len(text))) + "\n"
+            output += ("¤" * (self.posx - 1)) + text + "*"+"\n"
         else:
-            output += ("¤" * (self.posx - 1)) + text + ("¤" * (self.windowx - self.posx - len(text) + 1)) + "\n"
-
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (self.posx - 1)) + text + "\n"
         return output
 
 class Progressbar:
-    def __init__(self, width:int, value:int, minvalue:int, maxvalue:int, showValue:bool, posx:int, posy:int, windowx:int, windowy:int):
+    def __init__(self, width:int, value:int, minvalue:int, maxvalue:int, showValue:bool, posx:int, posy:int):
         self.width = width
         self.minvalue = minvalue
         self.maxvalue = maxvalue
@@ -211,8 +186,6 @@ class Progressbar:
         self.showValue = showValue
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
     
     def update(self):
         self.percentage = ((self.value - self.minvalue) / (self.maxvalue - self.minvalue)) * 100
@@ -227,27 +200,22 @@ class Progressbar:
             text = "["+("=" * filled + "." * empty)+"]"
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-        output += ("¤" * (self.posx - 1)) + text + ("¤" * (self.windowx - self.posx - len(text) + 1)) + "\n"
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (len(text)+self.posx-1)) + "\n"
+        output += ("¤" * (self.posx - 1)) + text + "\n"
         return output
 
 class Listbox:
-    def __init__(self, id:int, data:list, posx:int, posy:int, windowx:int, windowy:int):
+    def __init__(self, id:int, data:list, posx:int, posy:int):
         self.id = id
         self.data = data
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
         self.current = 0
+        self.width=0
         self.value=self.data[self.current]
-        self.width = 0
         self.active=False
         for i in range(len(self.data)):
             if len(self.data[i]) > self.width:self.width = len(self.data[i])
-        
         
     def press(self, key):
         if key == Key.right:
@@ -265,14 +233,12 @@ class Listbox:
             text = "<"+self.data[self.current]+"."*(self.width-len(self.data[self.current]))+">"
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-        output += ("¤" * (self.posx - 1)) + text + ("¤" * (self.windowx - self.posx - len(text) + 1)) + "\n"
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (len(text)+self.posx)) + "\n"
+        output += ("¤" * (self.posx - 1)) + text + "\n"
         return output
     
 class Slider:
-    def __init__(self, id:int, width:int, minvalue:int, maxvalue:int, step:int, posx:int, posy:int, windowx:int, windowy:int):
+    def __init__(self, id:int, width:int, minvalue:int, maxvalue:int, step:int, posx:int, posy:int):
         self.id = id
         self.width = width
         self.minvalue = minvalue
@@ -280,8 +246,6 @@ class Slider:
         self.step = step
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
         self.value = self.minvalue
         self.active = False
     
@@ -303,10 +267,8 @@ class Slider:
             text = "[" + "=" * filled + "-" * empty + "]"
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
-        output += ("¤" * (self.posx - 1)) + text + ("¤" * (self.windowx - self.posx - len(text) + 1)) + "\n"
-        for i in range(self.windowy - self.posy):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += ("¤" * (len(text)+self.posx-1)) + "\n"
+        output += ("¤" * (self.posx - 1)) + text + "\n"
         return output
 
 class Table:
@@ -336,7 +298,7 @@ class Table:
         data = self.data[self.current:self.current+self.visiblerows]
         output = ""
         for i in range(self.posy - 1):
-            output += ("¤" * (self.windowx)) + "\n"
+            output += "¤" + "\n"
         output+=("¤" * (self.posx - 1))
         for i in range(len(self.columnheaders)):
             if i != len(self.columnheaders)-1:
