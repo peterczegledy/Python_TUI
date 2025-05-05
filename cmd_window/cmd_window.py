@@ -271,7 +271,7 @@ class Slider:
         return output
 
 class Table:
-    def __init__(self,id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:int, posx:int, posy:int, windowx:int, windowy:int):
+    def __init__(self,id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:int, posx:int, posy:int):
         self.id = id
         self.data = data
         self.columnheaders = columnheaders
@@ -279,8 +279,6 @@ class Table:
         self.visiblerows = visiblerows
         self.posx = posx
         self.posy = posy
-        self.windowx = windowx
-        self.windowy = windowy
         self.active = False
         self.current = 0
         
