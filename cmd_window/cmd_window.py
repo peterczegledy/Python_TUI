@@ -1,6 +1,7 @@
 from pynput.keyboard import Key, Listener
 import os
 import threading
+import sys
 
 current_textbox = 0
 
@@ -112,7 +113,7 @@ class Textbox:
         return output
 
 class MultilineTextbox:
-    def __init__(self, id: int, width: int, height:int, posx: int, posy: int):
+    def __init__(self, id: int, width: int, height: int, posx: int, posy: int):
         self.id = id
         self.width = width
         self.height = height
@@ -122,10 +123,29 @@ class MultilineTextbox:
         self.active = False
     
     def keypress(self, key):
-        pass
+        if len(self.text) < (self.width*self.height):
+            if len(str(key)[1:-1]) == 1:
+                self.text += str(key)[1:-1]
+            elif (str(key)) == "Key.space":
+                self.text += " "
+            elif str(key) == "Key.end":
+                self.text+=(((int(len(self.text)/self.width)+1)*self.width)-len(self.text))*"¤"
+
+        if (str(key)) == "Key.backspace":
+            if self.text[-1] != "¤":
+                self.text = self.text[:-1]
+            else:
+                while self.text[-1] == "¤":
+                    self.text = self.text[:-1]
 
     def draw(self):
-        pass
+        text = self.text+("_"*((self.width*self.height)-len(self.text)))
+        output = ""
+        for i in range(self.posy - 1):
+            output += ("¤" * (self.width+self.posx-1)) + "\n"
+        for i in range(0, len(text), self.width):
+            output += ("¤" * (self.posx-1)) +text[i:i+self.width]+"\n"
+        return output
     
 class Button:
     def __init__(self,id, text, command, posx, posy):
@@ -321,7 +341,7 @@ class Table:
                     output+="│"+data[i][x]+"¤"*(self.columnwidths[x]-len(data[i][x]))+"│\n"
         return output
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls'); sys.stdout.write('\r' + ' ' * 80 + '\r'); sys.stdout.flush()
 
 def on_release(key, objects, current_textbox):
     if key == Key.page_down:
@@ -330,7 +350,7 @@ def on_release(key, objects, current_textbox):
         current_textbox -= 1
 
     for obj in objects:
-        if isinstance(obj, (Textbox, Button, Checkbox, Listbox, Table, Slider)):
+        if isinstance(obj, (Textbox, Button, Checkbox, Listbox, Table, Slider, MultilineTextbox)):
             obj.active = False
             if obj.id == current_textbox:
                 obj.active = True
@@ -348,6 +368,8 @@ def on_release(key, objects, current_textbox):
             obj.scroll(key)
         elif isinstance(obj, Slider) and obj.active:
             obj.press(key)
+        elif isinstance(obj, MultilineTextbox) and obj.active:
+            obj.keypress(key)
 
     draw(objects)
     return current_textbox
