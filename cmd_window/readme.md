@@ -20,7 +20,7 @@ The program can be started with the run(objects) function. You have to pass the 
 cmd.run(objects)
 ```
 
-All objects you can interact with have an ID value. You can select them by using the Page Up key to decrease and the Page Down key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues.
+All objects you can interact with have an ID value. You can select them by using the Page Up key to decrease and the Page Down key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues. The active object will be marked with a "*" on its right side.
 
 For objects that have a value that might be used for something (e.g., Textbox), you should define it as a variable.
 Some objects use additional keys. You can use the SPACE key to press a button or check a checkbox.
@@ -34,7 +34,7 @@ Later you can get the value of the textbox like this:
 ```python 
 text = textbox1.text()
 ```
-
+You can stop the program by pressing the "ESC" key.
 ## All objects
 
 ### Window
@@ -105,7 +105,18 @@ Textbox(id:int, width:int, posx:int, posy:int, ispassword:bool)
 ```
 
 ### Multilinetextbox
-An input field that allows the user to enter multiple lines of text. The value can be retrieved and used within the program.  
+An input field that allows the user to enter multiple lines of text. The value can be retrieved and used within the program. 
+```python
+MultilineTextbox(id: int, width: int, height:int, posx: int, posy: int)
+```
+
+```
+-id: The id of the textbox.
+-width: The width of the textbox.
+-height: The height of the textbox
+-posx: The x position of the textbox.
+-posy: The y position of the textbox.
+```
 !Work in progress!
 ### Listbox
 A selectable list of items where the user can choose one option. The selected items can be retrieved and used in the program.  
@@ -137,7 +148,7 @@ Checkbox(id:int, text:str, posx:int, posy:int)
 ### Table 
 A grid-like structure that displays data in rows and columns. Each cell can contain text or other elements, and values can be retrieved or modified. 
 ```python
-Table(id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:int, posx:int, posy:int, windowx:int, windowy:int)
+Table(id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:int, posx:int, posy:int)
 ```
 
 ```
@@ -148,8 +159,6 @@ Table(id, data:list[list], columnheaders:list, columnwidths:list, visiblerows:in
 -visiblerow: The maximum number of visible rows.
 -posx: The x position of the table.
 -posy: The y position of the table.
--windowx: !!WILL BE REMOVED!!
--windowy: !!WILL BE REMOVED!!
 ```
 ### Slider
 An input element that allows the user to select a value from a range by sliding a handle. The value can be adjusted using the left and right arrow keys, and it can be retrieved and modified programmatically.
