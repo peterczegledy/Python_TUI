@@ -105,7 +105,8 @@ Textbox(id:int, width:int, posx:int, posy:int, ispassword:bool)
 ```
 
 ### Multilinetextbox
-An input field that allows the user to enter multiple lines of text. The value can be retrieved and used within the program. 
+An input field that allows the user to enter multiple lines of text. The value can be retrieved and used within the program.   
+You can use the **END** key to start a new line.
 ```python
 MultilineTextbox(id: int, width: int, height:int, posx: int, posy: int)
 ```
@@ -117,7 +118,6 @@ MultilineTextbox(id: int, width: int, height:int, posx: int, posy: int)
 -posx: The x position of the textbox.
 -posy: The y position of the textbox.
 ```
-!Work in progress!
 ### Listbox
 A selectable list of items where the user can choose one option. The selected items can be retrieved and used in the program.  
 The value can be retrieved using the .value attribute.
@@ -182,5 +182,9 @@ The module can be downloaded from the github page.
 ```sh
 pip install cmd-window
 ```
+
+## Known issues and bugs
+1. After exiting the program, any text you type in the terminal is interpreted as a command.
+
 ## License
 MIT License © 2025 Péter Czeglédy
