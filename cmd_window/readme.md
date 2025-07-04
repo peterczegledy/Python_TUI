@@ -182,6 +182,14 @@ The module can be downloaded from the github page.
 ```sh
 pip install cmd-window
 ```
+If your using windows, you will need the following package:
+```bash
+pip install windows-curses
+```
+On linux you need the original curses package:
+```bash
+pip install curses
+```
 
 ## Updates
 ### v0.3.0:

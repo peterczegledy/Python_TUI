@@ -27,4 +27,4 @@ class CursesDrawer:
                 self.stdscr.clear()
                 self.stdscr.addstr(0, 0, text)
                 self.stdscr.refresh()
-            time.sleep(0.05)  # kíméljük a CPU-t
+            time.sleep(0.05) 
