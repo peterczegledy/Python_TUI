@@ -1,6 +1,6 @@
 from pynput.keyboard import Key, Listener
 import threading
-from window import CursesDrawer
+from .window import CursesDrawer
 
 current_textbox = 0
 drawer = CursesDrawer()
