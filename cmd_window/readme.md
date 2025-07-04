@@ -183,6 +183,13 @@ The module can be downloaded from the github page.
 pip install cmd-window
 ```
 
+## Updates
+### v0.3.0:
+- Optimised the code
+- Implemented a curses-based terminal interface
+- Added **window.py** to handle the curses window logic
+
+
 ## Known issues and bugs
 1. After exiting the program, any text you type in the terminal is interpreted as a command.
 

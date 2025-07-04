@@ -1,9 +1,9 @@
 from pynput.keyboard import Key, Listener
-import os
 import threading
-import sys
+from window import CursesDrawer
 
 current_textbox = 0
+drawer = CursesDrawer()
 
 class Window:
     def __init__(self, title: str, sizex: int, sizey: int, boxes: int):
@@ -141,10 +141,13 @@ class MultilineTextbox:
     def draw(self):
         text = self.text+("_"*((self.width*self.height)-len(self.text)))
         output = ""
-        for i in range(self.posy - 1):
+        for i in range(self.posy - 1): #lines before y position
             output += ("¤" * (self.width+self.posx-1)) + "\n"
-        for i in range(0, len(text), self.width):
-            output += ("¤" * (self.posx-1)) +text[i:i+self.width]+"\n"
+        for i in range(0, len(text), self.width): #text assembling
+            if i == 0 and self.active: #First line if self.active *
+                output += ("¤" * (self.posx-1)) +text[i:i+self.width]+"*"+"\n"
+            else:
+                output += ("¤" * (self.posx-1)) +text[i:i+self.width]+"\n"
         return output
     
 class Button:
@@ -341,7 +344,10 @@ class Table:
                     output+="│"+data[i][x]+"¤"*(self.columnwidths[x]-len(data[i][x]))+"│\n"
         return output
 
-clear = lambda: os.system('cls'); sys.stdout.write('\r' + ' ' * 80 + '\r'); sys.stdout.flush()
+
+class MessageBox:
+    def __init__(self):
+        pass
 
 def on_release(key, objects, current_textbox):
     if key == Key.page_down:
@@ -401,25 +407,29 @@ def manage_layers(layers: list[str]) -> str:
     return matrix_to_str(base_matrix)
 
 def draw(objects):
-    clear()
-    print("\033[H", end='')
     layers = []
     for obj in objects:
         layers.append(obj.draw())
-    print(manage_layers(layers))
+    drawer.draw(manage_layers(layers))
 
 def onrelease(key, objects):
     global current_textbox
     current_textbox = on_release(key, objects, current_textbox)
     if key == Key.esc:
+        exit()
         return False
-    
+
+def start_curses():
+    drawer.start()
+
 def start_listener(objects):
     with Listener(on_release=lambda key: onrelease(key, objects)) as listener:
         listener.join()
 
 def run(objects):
     global current_textbox
+    thread = threading.Thread(target=start_curses, daemon=True)
+    thread.start()
     draw(objects)
     listener_thread = threading.Thread(target=start_listener, args=(objects,))
     listener_thread.start()
