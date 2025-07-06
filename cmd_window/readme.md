@@ -1,4 +1,4 @@
-# cmd_window
+# Python TUI
 ## Description
 
 This Python module makes it easy to create text-based graphical interfaces for various purposes. It includes text boxes, labels, buttons, list boxes, tables, password fields, checkboxes, progress bars, and two types of windows.
