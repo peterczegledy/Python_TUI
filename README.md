@@ -1,4 +1,10 @@
 # Python TUI
+
+## Support   
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/peterczegledy)
+[![YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube&style=for-the-badge)](https://www.youtube.com/@Péter-h8q9w)
+
+
 ## Description
 
 This Python module makes it easy to create text-based graphical interfaces for various purposes. It includes text boxes, labels, buttons, list boxes, tables, password fields, checkboxes, progress bars, and two types of windows.
