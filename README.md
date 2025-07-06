@@ -26,7 +26,7 @@ The program can be started with the run(objects) function. You have to pass the 
 cmd.run(objects)
 ```
 
-All objects you can interact with have an ID value. You can select them by using the Page Up key to decrease and the Page Down key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues. The active object will be marked with a "*" on its right side.
+All objects you can interact with have an ID value. You can select them by using the **Page Up** key to decrease and the **Page Down** key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues. The active object will be marked with a "*" on its right side.
 
 For objects that have a value that might be used for something (e.g., Textbox), you should define it as a variable.
 Some objects use additional keys. You can use the SPACE key to press a button or check a checkbox.
