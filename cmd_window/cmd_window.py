@@ -33,12 +33,12 @@ class Window:
         return output
     
 class AdvancedWindow:
-    def __init__(self, titles:list, sizesx:list[int], sizesy:list[int], boxesx:int, boxesy:int):
+    def __init__(self, titles:list, sizesx:list[int], sizesy:list[int]):
         self.titles = titles
         self.sizesx = sizesx
         self.sizesy = sizesy
-        self.boxesx = boxesx
-        self.boxesy = boxesy
+        self.boxesx = len(sizesx)
+        self.boxesy = len(sizesy)
 
     def draw(self):
         for y in range(self.boxesy):
@@ -306,16 +306,19 @@ class Table:
         self.current = 0
         
     def scroll(self, key):
-        if key == Key.left:
+        if key == Key.up:
             if self.current-1 >= 0:
                 self.current -= 1
-        elif key == Key.right:
-            if self.current+1 <= len(self.data):
+        elif key == Key.down:
+            if self.current+1 <= len(self.data)-1:
                 self.current += 1
         self.draw()
 
     def draw(self):
         data = self.data[self.current:self.current+self.visiblerows]
+        if len(data)<self.visiblerows: 
+            for _ in range(self.visiblerows-len(data)):
+                data.append("¤"*len(self.columnwidths))
         output = ""
         for i in range(self.posy - 1):
             output += "¤" + "\n"
@@ -328,14 +331,14 @@ class Table:
                     output+="│"+self.columnheaders[i]+"¤"*(self.columnwidths[i]-len(self.columnheaders[i]))+"│*\n"
                 else:
                     output+="│"+self.columnheaders[i]+"¤"*(self.columnwidths[i]-len(self.columnheaders[i]))+"│\n"
-        for i in range(len(self.columnheaders)):
+        for i in range(len(self.columnheaders)): # Separator for headers
             if i == 0:
                 output+=("¤" * (self.posx - 1))+"├"+"─"*(self.columnwidths[i])
             else:
                 output+="┼"+"─"*(self.columnwidths[i])
         
         output+="┤\n"
-        for i in range(len(data)):
+        for i in range(len(data)): # Data rows
             output+=("¤" * (self.posx - 1))
             for x in range(len(self.columnheaders)):
                 if x != len(self.columnheaders)-1:
@@ -353,7 +356,8 @@ def on_release(key, objects, current_textbox):
     if key == Key.page_down:
         current_textbox += 1
     elif key == Key.page_up:
-        current_textbox -= 1
+        if current_textbox > 0:
+            current_textbox -= 1
 
     for obj in objects:
         if isinstance(obj, (Textbox, Button, Checkbox, Listbox, Table, Slider, MultilineTextbox)):
