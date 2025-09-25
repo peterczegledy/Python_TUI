@@ -1,10 +1,4 @@
-# Python TUI
-
-## Support   
-[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/peterczegledy)
-[![YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube&style=for-the-badge)](https://www.youtube.com/@Péter-h8q9w)
-
-
+# cmd_window
 ## Description
 
 This Python module makes it easy to create text-based graphical interfaces for various purposes. It includes text boxes, labels, buttons, list boxes, tables, password fields, checkboxes, progress bars, and two types of windows.
@@ -26,7 +20,7 @@ The program can be started with the run(objects) function. You have to pass the 
 cmd.run(objects)
 ```
 
-All objects you can interact with have an ID value. You can select them by using the **Page Up** key to decrease and the **Page Down** key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues. The active object will be marked with a "*" on its right side.
+All objects you can interact with have an ID value. You can select them by using the Page Up key to decrease and the Page Down key to increase the current ID. The ID cannot be the same, and it is recommended to use an increasing order. Having two objects with the same ID can cause issues. The active object will be marked with a "*" on its right side.
 
 For objects that have a value that might be used for something (e.g., Textbox), you should define it as a variable.
 Some objects use additional keys. You can use the SPACE key to press a button or check a checkbox.
@@ -198,6 +192,11 @@ pip install curses
 ```
 
 ## Updates
+### v0.3.3 - 2025.09.25:
+- Removed boxesx and boxesy parameter from AdvancedWindow, because it was unnecesary.
+- Empty rows are now visible in Tables.
+- When scrolling in a Table, now the last row is always visible.
+- Table now uses *up* and *down* arrows for scrolling
 ### v0.3.0:
 - Optimised the code
 - Implemented a curses-based terminal interface
